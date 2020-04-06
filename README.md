@@ -11,4 +11,7 @@ HTTP :  HTTP son las siglas de Hypertext Transfer Protocol
 * Diferencias entre REST y RESTful 
 REST es una arquitectura para aplicaciones en redes (Representational State Transfer). RESTful por otro lado, son programas (a modo de web service o API), basados en REST. Muchas veces se usan ambos terminos como sinonimos.
 
-    
+### Instalaciones:
+
+  
+
