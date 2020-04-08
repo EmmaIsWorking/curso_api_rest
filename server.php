@@ -31,11 +31,6 @@ $books = [
         'titulo' => 'Geneologia de la moral',
         'id_autor' => 1,
         'id_genero' => 3,
-    ],
-    4 => [
-        'titulo' => 'Cronicas marcianas',
-        'id_autor' => 5,
-        'id_genero' => 4,
     ]
 
 ];
@@ -62,14 +57,35 @@ switch(strtoupper($_SERVER['REQUEST_METHOD'])){
     break;
 
     case 'POST':
-        
+        $json = file_get_contents('php://input');
+        //transformamos el json recivido a un nuevo elemento del array
+        $books [] = json_decode($json, true);
+        // echo array_keys($books)[count($books) -1];
+        echo json_decode($books);
+
     break;
 
     case 'PUT':
-        
+        //validamos que el recurso buscado exista
+        if(!empty($resourceId)&& array_key_exists($resourceId, $books)){
+
+            $json = file_get_contents('php://input');
+    
+            //transformamos el json recivido a un nuevo elemento del array
+            $books[$resourceId] = json_decode($json, true);
+    
+            //tranformamos la coleccion modificada en formato json
+            echo json_encode($books);
+        }
     break;
 
     case 'DELETE':
-        
+        //Validamos que el recurso exista
+        if (!empty($resourceId) && array_key_exists($resourceId, $books)){
+            unset($books[$resourceId]); 
+        }
+
+        //Eliminamos el recurso
+            echo json_decode($books);
     break;
 };
