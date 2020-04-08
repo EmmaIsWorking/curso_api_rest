@@ -41,8 +41,33 @@ if($newHash !== $hash){
 //Autenticacion Token
 */
 
+if( !array_key_exists('HTTP_X_TOKEN',$_SERVER)){
+    die;
+};
+
+$url = 'http://localhost:8001';
+
+$ch = curl_init($url);
+curl_setopt(
+    $ch,
+    CURLOPT_HTTPHEADER,
+    [
+        "X-Token: {$_SERVER['HTTP_X_TOKE']}"
+    ]
+   
+    );
+curl_setopt(
+        $ch,
+        CURLOPT_RETURNTRANSFER,
+        true
+     );
+
+$RET = curl_exec($ch);
 
 
+if($ret !== 'true'){
+    die;
+}
 //Definimos los recursos disponibles
 $allowedResourceType = [
     'books',
